@@ -70,7 +70,7 @@ módulos de reconstrução e demo são desativados com aviso (degradação graci
 ./gitleak_hunter_br.sh -f lista_alvos.txt --output json --delay 2
 
 # Modo demonstração: cria um repo .git sintético local com secrets fake e roda
-# a análise completa — SEM internet e SEM alvo real (ideal para gravar em vídeo)
+# a análise completa — SEM internet e SEM alvo real 
 ./gitleak_hunter_br.sh --demo
 ```
 
