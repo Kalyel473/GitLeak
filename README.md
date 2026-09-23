@@ -10,10 +10,10 @@ varre **todos os commits  inclusive os "apagados"  atrás de secrets vazados.
 
 Repositórios `.git` acabam expostos em produção com uma frequência assustadora:
 deploy feito com `git clone` direto no servidor web, sem remover a pasta `.git` do
-*document root*. Quem encontra isso baixa o **histórico inteiro** do projeto.
+*document root*. Quem encontra isso baixa o histórico inteiro do projeto.
 
-E aqui está o pulo do gato: **deletar um arquivo e commitar de novo NÃO apaga nada
-do histórico do Git** — só esconde do estado atual (`HEAD`). Aquele `.env` que o dev
+E aqui está o pulo do gato: deletar um arquivo e commitar de novo NÃO apaga nada
+do histórico do Git  só esconde do estado atual (`HEAD`). Aquele `.env` que o dev
 commitou por engano e "removeu" no commit seguinte continua lá, para sempre,
 recuperável por qualquer um com acesso ao `.git`.
 
@@ -24,24 +24,24 @@ conceito pronta, no formato clássico de bug bounty (baixo esforço, alto impact
 
 ## Como funciona (4 módulos)
 
-1. **Detecção** — testa `GET /.git/HEAD` e confirma pelo **conteúdo esperado**
+1. Detecção testa `GET /.git/HEAD` e confirma pelo conteúdo esperado
    (`ref: refs/heads/...`), não só pelo HTTP 200 (evita falso positivo de página
    404 customizada). Faz confirmação cruzada com `/.git/config`, `/.git/index`
    (assinatura `DIRC`) e `/.git/logs/HEAD`.
-2. **Reconstrução** — baixa `index`, refs, packfiles (`objects/info/packs`) e os
+2. Reconstrução — baixa `index`, refs, packfiles (`objects/info/packs`) e os
    objects soltos, seguindo recursivamente os SHAs a partir de `HEAD`
-   (`commit → tree → parent → blobs`). Usa o **Git da sua máquina** (o alvo não
+   (`commit → tree → parent → blobs`). Usa o Git da sua máquina (o alvo não
    precisa de Git) para montar um `.git` funcional local. Ao final,
    `git log --all` e `git clone` funcionam normalmente sobre o repo reconstruído.
-3. **Varredura de secrets** — roda sobre `git log --all` (todas as branches, inclusive
+3. Varredura de secrets — roda sobre `git log --all` (todas as branches, inclusive
    commits órfãos/dangling recuperados). Para cada commit, aplica regex contra
    padrões de secrets (AWS keys, chaves privadas, JWT, connection strings de banco,
    `API_KEY=`, `SECRET=`, `PASSWORD=`, `.env` completo, etc.). Marca especialmente
-   arquivos que **existiam em commits antigos e foram deletados depois** — os
+   arquivos que existiam em commits antigos e foram deletados depois  os
    achados mais valiosos.
-4. **Relatório** — consolida os achados com arquivo, secret (mascarado), hash do
+4. Relatório — consolida os achados com arquivo, secret (mascarado), hash do
    commit, data, autor, e se o arquivo ainda existe no `HEAD` ou só no histórico.
-   Exporta em **Markdown** e **JSON**, com resumo executivo e nota de exposição 0–10.
+   Exporta em Markdown e JSON, com resumo executivo e nota de exposição 0–10.
 
 ---
 
