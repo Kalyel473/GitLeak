@@ -1,17 +1,4 @@
 #!/usr/bin/env bash
-# ==============================================================================
-# GitLeak Hunter BR
-# ------------------------------------------------------------------------------
-# Ferramenta em Bash puro para descobrir repositórios .git expostos publicamente,
-# reconstruir o histórico completo do repositório (sem precisar de Git no alvo)
-# e varrer TODOS os commits — inclusive os "apagados" — atrás de secrets vazados.
-#
-# Uso educacional / pentest AUTORIZADO. Companion tool do canal
-# "Cybersegurança na Prática". Leia o aviso legal antes de usar.
-#
-# Dependências: curl, git, grep, awk, sed  (tudo padrão em Kali/Debian/Ubuntu)
-# Compatível com bash 4+, Linux e WSL.
-# ==============================================================================
 
 set -o pipefail
 
