@@ -1,8 +1,8 @@
 # GitLeak Hunter BR
 
-Ferramenta em **Bash puro** que descobre repositórios `.git` expostos publicamente,
-reconstrói o histórico **completo** do repositório (sem precisar de Git no alvo) e
-varre **todos os commits — inclusive os "apagados"** — atrás de secrets vazados.
+Ferramenta em Bash puro que descobre repositórios `.git` expostos publicamente,
+reconstrói o histórico completo do repositório (sem precisar de Git no alvo) e
+varre **todos os commits  inclusive os "apagados" — atrás de secrets vazados.
 
 
 
