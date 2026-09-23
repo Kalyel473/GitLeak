@@ -4,10 +4,7 @@ Ferramenta em **Bash puro** que descobre repositórios `.git` expostos publicame
 reconstrói o histórico **completo** do repositório (sem precisar de Git no alvo) e
 varre **todos os commits — inclusive os "apagados"** — atrás de secrets vazados.
 
-> Companion tool ofensiva do canal **Cybersegurança na Prática**.
-> Uso educacional e de **pentest autorizado**. Leia a seção de ética/legal.
 
----
 
 ## O problema
 
