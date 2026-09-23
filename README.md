@@ -112,40 +112,40 @@ exposição (0–10)**.
 
 ## Segredos no terminal x no arquivo
 
-> ⚠️ **Importante.** No **terminal**, os secrets são sempre **mascarados**
-> (`AKIA****************MPLE`). Já os **arquivos de relatório** em `reports/`
-> contêm o **secret completo**, porque isso é necessário para o PoC/reprodução.
-> Trate esses arquivos como **confidenciais**: eles são credenciais reais do alvo.
+> ⚠️ **Importante.** No terminal, os secrets são sempre mascarados
+> (`AKIA****************MPLE`). Já os arquivos de relatório em `reports/`
+> contêm o secret completo, porque isso é necessário para o PoC/reprodução.
+> Trate esses arquivos como confidenciais: eles são credenciais reais do alvo.
 > Nunca os versione, envie por canais inseguros ou deixe em máquina compartilhada.
 
 ---
 
 ## Segurança da própria ferramenta
 
-- **Sanitização de entrada:** todo domínio/URL passa por uma whitelist estrita antes
+- Sanitização de entrada: todo domínio/URL passa por uma whitelist estrita antes
   de ir para o `curl`, evitando injeção de comando via nome de alvo malicioso.
-- **Rate limiting** configurável (`--delay`) para não parecer um ataque de força
+- Rate limiting configurável (`--delay`) para não parecer um ataque de força
   bruta/DoS contra o alvo.
-- **100% local:** sem telemetria, sem callback externo. Depois do download dos
+- 100% local: sem telemetria, sem callback externo. Depois do download dos
   objects, tudo roda na sua máquina.
-- **Mascaramento** de secrets no output de tela.
+- Mascaramento de secrets no output de tela.
 
 ---
 
 ## Ética e aspecto legal
 
-Esta ferramenta é para **teste de segurança autorizado**, bug bounty dentro de
+Esta ferramenta é para teste de segurança autorizado, bug bounty dentro de
 escopo e fins educacionais. Antes de qualquer varredura ativa contra um alvo, o
-script exige **confirmação explícita de autorização** (`[s/N]`).
+script exige confirmação explícita de autorização** (`[s/N]`).
 
 - **Lei 12.737/2012 (Lei Carolina Dieckmann):** invadir dispositivo informático
   alheio, conectado ou não à rede, sem autorização expressa ou tácita do titular,
-  é **crime** no Brasil.
-- **LGPD (Lei 13.709/2018):** dados pessoais eventualmente encontrados durante um
+  é crime no Brasil.
+- LGPD (Lei 13.709/2018): dados pessoais eventualmente encontrados durante um
   teste estão sujeitos à Lei Geral de Proteção de Dados; trate-os conforme a lei e
   a política de divulgação responsável do programa.
 
-Use **somente** contra sistemas para os quais você tem autorização por escrito
+Use somente contra sistemas para os quais você tem autorização por escrito
 (programa de bug bounty com escopo definido, contrato de pentest, ou seu próprio
 laboratório). O autor e o canal **não se responsabilizam** por uso indevido.
 
@@ -153,10 +153,10 @@ laboratório). O autor e o canal **não se responsabilizam** por uso indevido.
 
 ## Critérios de aceite (validados)
 
-- [x] Detecta `.git` exposto confirmando pelo **conteúdo** (não só HTTP 200)
+- [x] Detecta `.git` exposto confirmando pelo conteúdo (não só HTTP 200)
 - [x] Reconstrói o repositório e o `git log --all` resultante bate 100% com o original
 - [x] `git clone` local funciona sobre o repo reconstruído
-- [x] Encontra secrets em commits antigos, **inclusive os "removidos"** depois
-- [x] Modo `--demo` roda do zero ao fim **sem internet** e **sem alvo real**
+- [x] Encontra secrets em commits antigos, inclusive os "removidos" depois
+- [x] Modo `--demo` roda do zero ao fim sem internet e **sem alvo real**
 - [x] Gate de autorização não pode ser pulado sem `--no-confirm` explícito
 - [x] Roda em menos de 2 minutos contra um repositório de teste típico
