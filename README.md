@@ -2,7 +2,7 @@
 
 Ferramenta em Bash puro que descobre repositórios `.git` expostos publicamente,
 reconstrói o histórico completo do repositório (sem precisar de Git no alvo) e
-varre **todos os commits  inclusive os "apagados"  atrás de secrets vazados.
+varre todos os commits  inclusive os "apagados"  atrás de secrets vazados.
 
 
 
